@@ -18,11 +18,11 @@ namespace MarkG1968.PrintDiamondKata
 
             int maximumCharacterIndex = (int)character - (int)'A';
 
-            int numberOfLines = (maximumCharacterIndex * 2) + 1;
+            int numberOfLines = (maximumCharacterIndex * 2);
 
-            for (int currentLine = 0; currentLine < numberOfLines; currentLine++)
+            for (int currentLine = 0; currentLine <= numberOfLines; currentLine++)
             {
-                int currentCharacter = currentLine < maximumCharacterIndex ? currentLine : numberOfLines - currentLine - 1;
+                int currentCharacter = currentLine < maximumCharacterIndex ? currentLine : numberOfLines - currentLine;
 
                 diamond.Append(Spaces(maximumCharacterIndex - currentCharacter) + IndexCharacter(currentCharacter));
  

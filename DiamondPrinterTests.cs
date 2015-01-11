@@ -1,15 +1,16 @@
 ﻿using Should.Fluent;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Shouldly;
 
 namespace MarkG1968.PrintDiamondKata
 {
-    public class PrintDiamondTests
+    public class DiamondPrinterTests
     {
         private DiamondPrinter sut;
 
-        public PrintDiamondTests()
+        public DiamondPrinterTests()
         {
             sut = new DiamondPrinter();
         }
@@ -28,22 +29,14 @@ namespace MarkG1968.PrintDiamondKata
         {
             var expected = "**A";
 
-            var result = sut.PrintDiamondFor('C');
-
-            var firstLine = result.Split(new [] {Environment.NewLine}, StringSplitOptions.None).First();
-
-            firstLine.Should().Equal(expected);
+            sut.PrintDiamondFor('C').Line(1).Should().Equal(expected);
         }
 
         public void PrintsSecondLineOfDiamondForC()
         {
             var expected = "*B*B";
 
-            var result = sut.PrintDiamondFor('C');
-
-            var secondLine = result.Split(new[] { Environment.NewLine }, StringSplitOptions.None).Skip(1).First();
-
-            secondLine.Should().Equal(expected);
+            sut.PrintDiamondFor('C').Line(2).Should().Equal(expected);
         }
 
         public void PrintsADiamondForC()
