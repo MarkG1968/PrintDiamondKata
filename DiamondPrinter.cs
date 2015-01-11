@@ -9,15 +9,42 @@ namespace MarkG1968.PrintDiamondKata
     {
         internal String PrintDiamondFor(char character)
         {
-            if (character == 'A')
+            StringBuilder diamond = new StringBuilder();
+
+            int maximumCharacterIndex = (int)character - (int)'A';
+
+            if (maximumCharacterIndex < 0 || maximumCharacterIndex > 25)
             {
-                return "A";
+                throw new ArgumentException("Must be between A and Z");
             }
 
-            return  " A\n" +
-                    "B B\n" +
-                    " A";
+            int numberOfLines = (maximumCharacterIndex * 2) + 1;
 
+            for (int currentLine = 0; currentLine < numberOfLines; currentLine++)
+            {
+                int currentCharacter = currentLine <= maximumCharacterIndex ? currentLine : numberOfLines - currentLine -1;
+
+                if (currentCharacter == 0)
+                {
+                    diamond.AppendLine(Spaces(maximumCharacterIndex) + IndexCharacter(currentCharacter));
+                }
+                else
+                {
+                    diamond.AppendLine(Spaces(maximumCharacterIndex - currentCharacter) + IndexCharacter(currentCharacter) + Spaces(((currentCharacter - 1) * 2) + 1) + IndexCharacter(currentCharacter));
+                }
+            }
+
+            return diamond.ToString();
+        }
+
+        String IndexCharacter(int index)
+        {
+            return Convert.ToChar((int)'A' + index).ToString();
+        }
+
+        String Spaces(int number)
+        {
+            return new String('*', number);
         }
     }
 }
